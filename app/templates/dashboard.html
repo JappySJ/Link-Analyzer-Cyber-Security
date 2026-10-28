@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Dashboard &middot; {{ app_name }}{% endblock %}
+
+{% block content %}
+<section class="hero" style="text-align:left; margin-bottom: var(--s-5);">
+  <h1 style="font-size: clamp(24px, 4vw, 32px);">Dashboard</h1>
+  <p class="hero-sub" style="margin:0; max-width:none;">
+    Aggregate statistics across every scan stored on this machine.
+  </p>
+</section>
+
+<div class="stat-grid">
+  <div class="card stat-tile">
+    <div class="stat-label">Total scans</div>
+    <div class="stat-value" data-count="0" id="statTotal">0</div>
+    <div class="stat-sub" id="statAvg">Average score &mdash;</div>
+  </div>
+  <div class="card stat-tile t-safe">
+    <div class="stat-label">Safe</div>
+    <div class="stat-value" data-count="0" id="statSafe">0</div>
+    <div class="stat-sub" id="statSafePct">&mdash;</div>
+  </div>
+  <div class="card stat-tile t-suspicious">
+    <div class="stat-label">Suspicious</div>
+    <div class="stat-value" data-count="0" id="statSuspicious">0</div>
+    <div class="stat-sub" id="statSuspiciousPct">&mdash;</div>
+  </div>
+  <div class="card stat-tile t-malicious">
+    <div class="stat-label">Malicious</div>
+    <div class="stat-value" data-count="0" id="statMalicious">0</div>
+    <div class="stat-sub" id="statMaliciousPct">&mdash;</div>
+  </div>
+</div>
+
+<div class="chart-grid">
+  <div class="card chart-card">
+    <div class="chart-head">
+      <span class="chart-title">Verdict distribution</span>
+      <span class="chart-note">All time</span>
+    </div>
+    <div class="chart-box">
+      <canvas id="verdictChart" aria-label="Doughnut chart of verdict distribution" role="img"></canvas>
+      <div id="verdictEmpty" hidden></div>
+    </div>
+  </div>
+
+  <div class="card chart-card">
+    <div class="chart-head">
+      <span class="chart-title">Scans per day</span>
+      <span class="chart-note">Last 14 days</span>
+    </div>
+    <div class="chart-box">
+      <canvas id="dailyChart" aria-label="Line chart of scans per day" role="img"></canvas>
+      <div id="dailyEmpty" hidden></div>
+    </div>
+  </div>
+</div>
+
+<div class="card card-pad">
+  <div class="chart-head">
+    <span class="chart-title">Most recent scans</span>
+    <a href="/history" class="chart-note">View all &rarr;</a>
+  </div>
+  <div class="recent-list" id="recentList">
+    <p style="color:var(--text-dim); font-size:13px;">Loading&hellip;</p>
+  </div>
+</div>
+
+<div class="card card-pad" style="margin-top: var(--s-4);">
+  <div class="chart-head">
+    <span class="chart-title">Model information</span>
+    <span class="chart-note">from <code>app/ml/metrics.json</code></span>
+  </div>
+  <div class="meta-strip" style="padding:0; border:none;" id="modelInfo">
+    <p style="color:var(--text-dim); font-size:13px;">Loading&hellip;</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

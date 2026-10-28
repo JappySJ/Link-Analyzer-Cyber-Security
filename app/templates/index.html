@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Analyze a link &middot; {{ app_name }}{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Is this link <span class="grad">safe to open?</span></h1>
+  <p class="hero-sub">
+    Paste any URL. LTAT combines weighted heuristic rules with a trained
+    machine-learning model to produce one explainable verdict.
+  </p>
+</section>
+
+<section class="search-wrap">
+  <form id="analyzeForm" autocomplete="off">
+    <div class="search-bar">
+      <span class="search-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/>
+          <path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>
+        </svg>
+      </span>
+      <input
+        type="text"
+        id="urlInput"
+        class="search-input"
+        placeholder="https://example.com/login"
+        aria-label="URL to analyze"
+        spellcheck="false"
+        autocapitalize="off"
+        autocorrect="off"
+        required>
+      <kbd class="kbd-hint" aria-hidden="true" title="Press / to focus this field">/</kbd>
+      <button type="submit" class="btn btn-primary" id="analyzeBtn" aria-label="Analyze this URL">
+        <span id="btnLabel">Analyze</span>
+      </button>
+    </div>
+  </form>
+
+  <div class="chips" style="margin-top: var(--s-4);">
+    <span class="chip-label">Try an example</span>
+    <button type="button" class="chip" data-url="https://www.google.com">https://www.google.com</button>
+    <button type="button" class="chip" data-url="https://github.com/about">github.com/about</button>
+    <button type="button" class="chip chip-bad" data-url="http://paypal-secure-login.verify-account.tk/@login">paypal-secure-login.verify-account.tk</button>
+    <button type="button" class="chip chip-bad" data-url="http://185.23.44.9/paypal/verify/index.php">185.23.44.9/paypal/verify</button>
+    <button type="button" class="chip chip-bad" data-url="https://xn--pypal-4ve.com/verify">xn--pypal-4ve.com (punycode)</button>
+  </div>
+</section>
+
+<!-- Loading skeleton -->
+<section id="loadingState" class="result" hidden aria-hidden="true">
+  <p class="stage-text">
+    <span class="spinner"></span>
+    <span id="stageText">Extracting features&hellip;</span>
+  </p>
+  <div class="card card-pad">
+    <div class="skel skel-badge"></div>
+    <div class="skel skel-gauge"></div>
+    <div class="skel-grid" style="margin-bottom: var(--s-5);">
+      <div class="skel skel-tile"></div>
+      <div class="skel skel-tile"></div>
+      <div class="skel skel-tile"></div>
+    </div>
+    <div class="skel skel-row" style="width: 92%;"></div>
+    <div class="skel skel-row" style="width: 78%;"></div>
+    <div class="skel skel-row" style="width: 85%;"></div>
+  </div>
+</section>
+
+<!-- Result report card, filled in by app.js -->
+<section id="resultState" class="result" hidden></section>
+{% endblock %}

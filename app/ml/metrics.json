@@ -1,0 +1,191 @@
+{
+  "generated_at": "2026-08-23T09:43:54.301483+00:00",
+  "dataset": "C:\\Users\\victus\\Desktop\\ltat\\ltat2\\app\\ml\\dataset.csv",
+  "dataset_rows": 2400,
+  "dataset_benign": 1200,
+  "dataset_phishing": 1200,
+  "train_rows": 1920,
+  "test_rows": 480,
+  "test_size": 0.2,
+  "random_state": 42,
+  "cv_folds": 5,
+  "n_features": 29,
+  "feature_names": [
+    "url_length",
+    "hostname_length",
+    "path_length",
+    "query_length",
+    "num_dots",
+    "num_hyphens",
+    "num_digits_host",
+    "digit_ratio_host",
+    "num_special_chars",
+    "num_subdomains",
+    "path_depth",
+    "has_ip_host",
+    "has_at_symbol",
+    "has_double_slash_path",
+    "is_https",
+    "is_shortener",
+    "high_risk_tld",
+    "tld_length",
+    "domain_entropy",
+    "url_entropy",
+    "brand_impersonation",
+    "suspicious_keyword_count",
+    "has_punycode",
+    "has_non_ascii",
+    "num_percent_encodings",
+    "has_explicit_port",
+    "longest_token_len_host",
+    "is_exact_brand_domain",
+    "is_typosquat"
+  ],
+  "selected_model": "RandomForest",
+  "selection_criterion": "highest test F1",
+  "models": [
+    {
+      "model": "LogisticRegression",
+      "accuracy": 0.975,
+      "precision": 0.9830508474576272,
+      "recall": 0.9666666666666667,
+      "f1": 0.9747899159663865,
+      "roc_auc": 0.995017361111111,
+      "confusion_matrix": {
+        "true_negative": 236,
+        "false_positive": 4,
+        "false_negative": 8,
+        "true_positive": 232
+      },
+      "cv_f1_mean": 0.9839955010068747,
+      "cv_f1_std": 0.008696377062365732,
+      "cv_f1_folds": [
+        0.9895,
+        0.9682,
+        0.9832,
+        0.9937,
+        0.9854
+      ]
+    },
+    {
+      "model": "RandomForest",
+      "accuracy": 0.9854166666666667,
+      "precision": 0.9874476987447699,
+      "recall": 0.9833333333333333,
+      "f1": 0.9853862212943633,
+      "roc_auc": 0.9986631944444445,
+      "confusion_matrix": {
+        "true_negative": 237,
+        "false_positive": 3,
+        "false_negative": 4,
+        "true_positive": 236
+      },
+      "cv_f1_mean": 0.9886911101659095,
+      "cv_f1_std": 0.006054711149170301,
+      "cv_f1_folds": [
+        0.9937,
+        0.9789,
+        0.9896,
+        0.9958,
+        0.9854
+      ]
+    }
+  ],
+  "feature_importance": {
+    "random_forest_top10": [
+      {
+        "feature": "high_risk_tld",
+        "importance": 0.137895
+      },
+      {
+        "feature": "suspicious_keyword_count",
+        "importance": 0.127243
+      },
+      {
+        "feature": "brand_impersonation",
+        "importance": 0.10297
+      },
+      {
+        "feature": "digit_ratio_host",
+        "importance": 0.088685
+      },
+      {
+        "feature": "num_digits_host",
+        "importance": 0.085563
+      },
+      {
+        "feature": "is_https",
+        "importance": 0.074409
+      },
+      {
+        "feature": "is_typosquat",
+        "importance": 0.066562
+      },
+      {
+        "feature": "query_length",
+        "importance": 0.051126
+      },
+      {
+        "feature": "domain_entropy",
+        "importance": 0.038346
+      },
+      {
+        "feature": "num_special_chars",
+        "importance": 0.03512
+      }
+    ],
+    "logistic_regression_top10": [
+      {
+        "feature": "high_risk_tld",
+        "coefficient": 3.145678,
+        "direction": "phishing"
+      },
+      {
+        "feature": "digit_ratio_host",
+        "coefficient": 3.041481,
+        "direction": "phishing"
+      },
+      {
+        "feature": "num_digits_host",
+        "coefficient": 2.641629,
+        "direction": "phishing"
+      },
+      {
+        "feature": "is_typosquat",
+        "coefficient": 2.05243,
+        "direction": "phishing"
+      },
+      {
+        "feature": "brand_impersonation",
+        "coefficient": 2.008927,
+        "direction": "phishing"
+      },
+      {
+        "feature": "num_percent_encodings",
+        "coefficient": 1.972924,
+        "direction": "phishing"
+      },
+      {
+        "feature": "domain_entropy",
+        "coefficient": 1.537571,
+        "direction": "phishing"
+      },
+      {
+        "feature": "path_depth",
+        "coefficient": 1.429712,
+        "direction": "phishing"
+      },
+      {
+        "feature": "path_length",
+        "coefficient": -1.387668,
+        "direction": "benign"
+      },
+      {
+        "feature": "hostname_length",
+        "coefficient": 1.200129,
+        "direction": "phishing"
+      }
+    ]
+  },
+  "warnings": []
+}

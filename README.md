@@ -1,16 +1,15 @@
-# Link Threat Analysis Tool
+# Link Analyzer & Cyber Security
 
 ### An Intelligent Web-Based Phishing Detection System
 
-**Group 09 — Bhilai Institute of Technology, Durg**
-Department of Information Technology · 7th Semester Major Project
+**Rungta College Of Engineering & Technology**
+Department of CSE · 5th Semester Major Project
 
 | Team member |
 |---|
-| Vedansh Singh Rajput |
-| Ritesh Banjare |
-| Yeeshika Dewangan |
-| Aisha Ansari |
+| D.Laya |
+| Japneet Singh Jhajj |
+| Sabana Parbin |
 
 ---
 
